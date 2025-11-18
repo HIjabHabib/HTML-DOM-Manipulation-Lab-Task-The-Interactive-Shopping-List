@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping List - DOM Lab</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      padding: 30px;
+    }
+
+    #itemInput {
+      padding: 8px;
+      width: 60%;
+    }
+
+    #addBtn {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    ul {
+      margin-top: 20px;
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background: #eee;
+      padding: 10px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 4px;
+    }
+
+    .deleteBtn {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>Interactive Shopping List (DOM Lab)</h2>
+
+<label>Item: </label>
+<input type="text" id="itemInput" placeholder="Enter item name">
+<input type="button" value="Add Item" id="addBtn" onclick="addItem();">
+
+<ul id="shoppingList">
+</ul>
+
+<script>
+
+function addItem() {
+
+  let value = document.getElementById("itemInput").value;
+
+  // Prevent empty entries
+  if (value === "") {
+    alert("Please enter an item!");
+    return;
+  }
+
+  const li = document.createElement("li");
+
+  li.innerHTML = value;
+
+  const delBtn = document.createElement("button");
+  delBtn.innerHTML = "Delete";
+  delBtn.classList.add("deleteBtn");
+
+  delBtn.onclick = function() {
+    li.remove();
+  };
+
+  li.appendChild(delBtn);
+
+  document.getElementById("shoppingList").appendChild(li);
+
+  document.getElementById("itemInput").value = "";
+}
+
+</script>
+
+</body>
+</html>
